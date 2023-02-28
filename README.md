@@ -16,6 +16,8 @@ $ mkdir $TARGET
 $ cp app.py $TARGET
 # Add ONNX resnet model 
 $ cp -r onnx_model $TARGET
+# Add imagenet classes file
+$ cp imagenet_classes.txt
 # Add onnxrumtime dependency.
 $ docker run -v `pwd`:/build -w /build --rm -it python:3.9-slim-bullseye pip install onnxruntime==1.13.1 --target /build/$TARGET
 ```
