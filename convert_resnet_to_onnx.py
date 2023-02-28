@@ -26,6 +26,7 @@ if __name__ == "__main__":
     if not onnx_path.exists():
         onnx_path.mkdir()
 
+    # Export model to ONNX
     weights = torchvision.models.ResNet50_Weights.DEFAULT
     model = torchvision.models.resnet50(weights)
     export_model_to_onnx(
@@ -33,3 +34,9 @@ if __name__ == "__main__":
         dummy_tensor_shape=(1, 3, 224, 224),
         onnx_file_path=onnx_path / "resnet50.onnx",
     )
+
+    # Export imagnet classes to a txt file
+    imagenet_classes = weights.meta["categories"]
+    with open("imagenet_classes.txt", "w") as f:
+        for class_name in imagenet_classes:
+            f.write(str(class_name) + "\n")
