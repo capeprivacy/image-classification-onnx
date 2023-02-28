@@ -17,7 +17,7 @@ $ cp app.py $TARGET
 # Add ONNX resnet model 
 $ cp -r onnx_model $TARGET
 # Add imagenet classes file
-$ cp imagenet_classes.txt
+$ cp imagenet_classes.txt $TARGET
 # Add onnxrumtime dependency.
 $ docker run -v `pwd`:/build -w /build --rm -it python:3.9-slim-bullseye pip install onnxruntime==1.13.1 --target /build/$TARGET
 ```
@@ -44,4 +44,9 @@ $ export TOKEN=<copied from above>
 Invoke the image classification model with:
 ```
 $ python run_prediction.py
+golden retriever: 39.7%
+Labrador retriever: 7.1%
+tennis ball: 1.3%
+clumber: 0.9%
+Brittany spaniel: 0.7%
 ```

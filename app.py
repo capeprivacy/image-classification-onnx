@@ -16,10 +16,10 @@ def softmax(x):
 
 def get_top5_classes(onnx_output, imagenet_classes):
     onnx_output = softmax(onnx_output.flatten())
-    top5_catid = np.argsort(-onnx_output)[:5]
+    top5_cat_id = np.argsort(-onnx_output)[:5]
     top5_class_score = {
         imagenet_classes[class_id]: onnx_output[class_id].tolist()
-        for class_id in top5_catid
+        for class_id in top5_cat_id
     }
     return top5_class_score
 
