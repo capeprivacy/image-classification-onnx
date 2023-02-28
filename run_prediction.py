@@ -1,10 +1,14 @@
 import os
+import warnings
 
+import numpy as np
 import torch
 from torchvision.io import read_image
 from torchvision.models import ResNet50_Weights
 
 from pycape import Cape
+
+warnings.filterwarnings("ignore")
 
 token_env = os.environ.get("TOKEN")
 function_id_env = os.environ.get("FUNCTION_ID")
