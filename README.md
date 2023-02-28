@@ -2,7 +2,7 @@
 
 ### Generate ONNX model
 ```
-python convert_resnet_to_onnx.py
+$ python convert_resnet_to_onnx.py
 ```
 
 ### Deploy with Cape
@@ -41,5 +41,5 @@ $ export TOKEN=<copied from above>
 
 Invoke the image classification model with:
 ```
-python run_prediction.py
+$ python run_prediction.py
 ```
