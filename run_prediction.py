@@ -34,5 +34,5 @@ if __name__ == "__main__":
     top5_classes = cape.run(f, t, input_bytes)
 
     top5_classes = json.loads(top5_classes)
-    for category_name, score in top5_classes:
+    for category_name, score in top5_classes.items():
         print(f"{category_name}: {100 * score:.1f}%")

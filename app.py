@@ -30,23 +30,3 @@ def cape_handler(input_bytes: bytes):
     ort_outs = onnx_sess.run(None, ort_inputs)
     top5_classes = get_top5_classes(ort_outs[0], imagenet_classes)
     return json.dumps(top5_classes)
-
-
-from torchvision.io import read_image
-from torchvision.models import ResNet50_Weights
-
-
-def process_image(file):
-    img = read_image(file)
-    weights = ResNet50_Weights.DEFAULT
-    preprocess = weights.transforms()
-    batch = preprocess(img).unsqueeze(0)
-    batch_numpy = batch.detach().numpy()
-    batch_numpy_bytes = batch_numpy.tobytes()
-    return batch_numpy_bytes
-
-
-if __name__ == "__main__":
-    input_bytes = process_image("./images_sample/dog.jpeg")
-    output = cape_handler(input_bytes)
-    print(json.loads(output))
