@@ -22,7 +22,7 @@ $ export TARGET="onnx_resnet_deploy"
 $ mkdir $TARGET
 # Add function script
 $ cp app.py $TARGET
-# Add ONNX resnet model 
+# Add ONNX resnet model
 $ cp -r onnx_model $TARGET
 # Add imagenet classes file
 $ cp imagenet_classes.txt $TARGET
@@ -58,3 +58,39 @@ tennis ball: 1.3%
 clumber: 0.9%
 Brittany spaniel: 0.7%
 ```
+
+### Run Secure Prediction with Encryption
+
+You can encrypt data before sending it to Cape to be processed in your function. You can encrypt
+to yourself or you can encrypt for another person. If you encrypt for yourself only you can decrypt the
+data and if you encrypt for another person only they can decrypt it.
+
+There are three examples for testing this out:
+
+Returns the encrypted string for you.
+
+```
+$ python encrypt.py
+Encrypted: cape:KTTGfoNTQu....
+```
+
+Returns the encrypted string for the capedocs user.
+
+```
+$ python encrypt_for_user.py capedocs
+Encrypted: cape:MQrGNmp6V1im7cu.....
+```
+
+`run_encrypt.py` is just like `run_prediction.py` except it encrypts the data before sending it. The
+output is the same as the input is decrypted securely inside the enclave before processing.
+
+```
+$ python run_encrypt.py
+golden retriever: 39.7%
+Labrador retriever: 7.1%
+tennis ball: 1.3%
+clumber: 0.9%
+Brittany spaniel: 0.7%
+```
+
+See [here](https://docs.capeprivacy.com/concepts/encrypt) for more details.
