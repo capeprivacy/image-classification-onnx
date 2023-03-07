@@ -74,7 +74,7 @@ $ python encrypt.py
 Encrypted: cape:KTTGfoNTQu....
 ```
 
-Returns the encrypted string for the capedocs user.
+Returns the encrypted string for the capedocs user. (Note: the capedocs user is a user we use to deploy example functions).
 
 ```
 $ python encrypt_for_user.py capedocs
