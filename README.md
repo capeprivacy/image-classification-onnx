@@ -16,16 +16,20 @@ cape signup
 ### Deploy with Cape
 
 First, create a deployment folder containing your dependencies and a cape_handler in an `app.py` file. To learn in general how to write a Cape function and deploy it with Cape, you can consult the [documentation](https://docs.capeprivacy.com/tutorials/writing).
-```
+```console
 # Create a deployment folder
 $ export TARGET="onnx_resnet_deploy"
 $ mkdir $TARGET
+
 # Add function script
 $ cp app.py $TARGET
+
 # Add ONNX resnet model
 $ cp -r onnx_model $TARGET
+
 # Add imagenet classes file
 $ cp imagenet_classes.txt $TARGET
+
 # Add onnxrumtime dependency.
 $ docker run -v `pwd`:/build -w /build --rm -it python:3.9-slim-bullseye pip install onnxruntime==1.13.1 --target /build/$TARGET
 ```
@@ -37,6 +41,7 @@ Deploying function to Cape ...
 Success! Deployed function to Cape.
 Function ID ➜  <FUNCTION_ID>
 Function Checksum ➜  <FUNCTION_CHECKSUM>
+
 $ export FUNCTION_ID=<copied from above>
 ```
 
@@ -46,6 +51,7 @@ Then to authenticate with Cape from the SDKs, you need to generate a [personal a
 ```console
 $ cape token create --name resnet
 Success! Your token: eyJhtGckO12...(token omitted)
+
 $ export TOKEN=<copied from above>
 ```
 
@@ -69,14 +75,14 @@ There are three examples for testing this out:
 
 Returns the encrypted string for you.
 
-```
+```console
 $ python encrypt.py
 Encrypted: cape:KTTGfoNTQu....
 ```
 
 Returns the encrypted string for the capedocs user. (Note: the capedocs user is a user we use to deploy example functions).
 
-```
+```console
 $ python encrypt_for_user.py capedocs
 Encrypted: cape:MQrGNmp6V1im7cu.....
 ```
@@ -84,7 +90,7 @@ Encrypted: cape:MQrGNmp6V1im7cu.....
 `run_encrypt.py` is just like `run_prediction.py` except it encrypts the data before sending it. The
 output is the same as the input is decrypted securely inside the enclave before processing.
 
-```
+```console
 $ python run_encrypt.py
 golden retriever: 39.7%
 Labrador retriever: 7.1%
